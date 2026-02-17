@@ -65,3 +65,22 @@ function checkFishSize() {
     
     alert("Минимално допустимият размер за " + species + " е " + minSize + " см.");
 }
+function filterFish() {
+    // Вземаме въведената стойност и я правим малка, за да няма значение главни/малки букви
+    let input = document.getElementById('fishSearch').value.toLowerCase();
+    
+    // Вземаме всички елементи, които имат клас "fish-card"
+    let cards = document.getElementsByClassName('fish-card');
+
+    for (let i = 0; i < cards.length; i++) {
+        // Вземаме текста от заглавието (h3) вътре в самата карта
+        let name = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+        
+        // Ако името съдържа написаното в инпута, показваме картата, ако не - я скриваме
+        if (name.includes(input)) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
